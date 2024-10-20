@@ -13,9 +13,7 @@ func Summarize(bc processor.BrainContext) error {
 	fmt.Println("Summarize assistant running...")
 
 	query := bc.GetMemory("query").(string)
-	result := bc.GetMemory("result").(string)
-
-	
+	result := bc.GetMemory("xhs_data")
 
 	prompt := []openai.ChatCompletionMessage{
 		{

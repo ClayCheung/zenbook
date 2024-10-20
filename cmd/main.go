@@ -4,10 +4,12 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
 	// "strconv"
 
-	"github.com/ClayCheung/zenbook/pkg/brain"
+	bp "github.com/ClayCheung/zenbook/pkg/bp"
 	_ "github.com/joho/godotenv/autoload"
+	"github.com/zenmodel/zenmodel/brainlite"
 )
 
 func main() {
@@ -21,8 +23,7 @@ func main() {
 	}
 
 	fmt.Printf("您的搜索查询是: %s\n", *query)
-
-	brain := brain.New()
+	brain := brainlite.BuildMultiLangBrain(bp.New())
 
 	brain.EntryWithMemory("query", *query)
 	brain.Wait()
@@ -47,4 +48,5 @@ func main() {
 
 	fmt.Printf("回答已保存到: %s\n", outputPath)
 
+	brain.Shutdown()
 }
